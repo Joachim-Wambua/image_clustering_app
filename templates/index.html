@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset=utf-8 />
+    <title> Sign Language Recognition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+        <!-- jQuery + Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
+		rel="stylesheet" type="text/css" />
+	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+	<script src="{{ url_for('static', filename='upload.js') }}"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<style>
+		article,
+		aside,
+		figure,
+		footer,
+		header,
+		hgroup,
+		menu,
+		nav,
+		section {
+			display: block;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-dark bg-primary">
+		<!-- Navbar content -->
+		<a class="navbar-brand text-white">Image Cluster App</a>
+	  </nav>
+
+    <div class="container p-3">
+
+		<div class="row" style="margin: 40px; padding: auto;">
+			<div class="col-sm-6 p-3 border mx-auto">
+				<h5><b><br>Welcome to the Image Cluster Application<br> <br> Instructions</b></h5>
+				<p class="small">Upload an array of over 34 images of two distinct clusters</p>
+				<p class="small">Then Press 'Predict'<br> Enjoy!</p>
+				
+			</div>
+			<div class="col-sm-6 p-3 border mx-auto"> 	
+				<form class="p-2" action="/submit" method="POST" enctype="multipart/form-data">					
+					<div class="form-group">
+						<label class="control-label small col-sm-4" for="pwd">Upload Image</label>
+						<div class="col-sm-10">	
+							<input class="form-control-file pb-2" type='file' accept="image/*" name='file' onchange="openURL(file)" multiple>
+                            <!-- <input type=file name=file  multiple>
+                            <input type=submit value=Upload accept="image/*" onchange="openURL(file)"> -->
+						</div>
+					</div>
+					<!-- Uploaded Image -->
+					<div class="form-group">
+						<img id="upload_image" src="#" alt="Image" />
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button class="btn btn-success" type="submit">Predict</button>
+						</div>
+					</div>
+				</form>
+
+				{% if cluster1 %}
+			<!-- <img src="{{url_for('static', filename='img_file')}}" height="250px" width="250px"> -->
+				<p class="small"> {{ cluster1 }} </p><br><br>
+				<p class="small"> {{ cluster2 }} </p>
+				{% endif %}
+
+
+			</div>
+		</div>
+    </div>
+</body>
+
+</html>
+
